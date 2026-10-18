@@ -1,0 +1,81 @@
+---
+layout: default
+---
+{% assign sec = site.data.sections | where: "slug", page.section | first %}
+{% assign sec_url = '/' | append: page.section | append: '/' %}
+{% assign siblings = site.guides | where: "section", page.section | sort: "order" %}
+<div class="container with-sidebar article-layout">
+  <article class="article">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a> / <a href="{{ sec_url | relative_url }}">{{ sec.title }}</a> / {{ page.topic }}</nav>
+
+    <header class="article-head">
+      <div class="card-meta"><span class="level level-{{ page.level | slugify }}">{{ page.level }}</span>{{ page.topic }}</div>
+      <h1>{{ page.title }}</h1>
+      {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    </header>
+
+    {% if page.key_points %}
+    <div class="key-points">
+      <p class="eyebrow">Key points</p>
+      <ul>{% for p in page.key_points %}<li>{{ p }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+
+    {% if page.image %}
+    <figure class="article-figure">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">
+      {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
+
+    <div class="prose" data-toc-source>
+      {{ content }}
+    </div>
+
+    {% if page.videos or page.books %}
+    <section class="resources">
+      <h2 id="videos-and-books">Videos &amp; books</h2>
+      {% if page.videos %}
+        <h3>Videos</h3>
+        <ul>{% for v in page.videos %}<li><a href="{{ v.url }}" rel="noopener">{{ v.title }}</a></li>{% endfor %}</ul>
+      {% endif %}
+      {% if page.books %}
+        <h3>Books</h3>
+        <ul>{% for b in page.books %}<li>{% if b.url %}<a href="{{ b.url }}" rel="noopener">{{ b.title }}</a>{% else %}{{ b.title }}{% endif %}{% if b.author %}, {{ b.author }}{% endif %}</li>{% endfor %}</ul>
+      {% endif %}
+    </section>
+    {% else %}
+    <p class="later-note"><strong>Videos &amp; books</strong> Links for this topic will go here later.</p>
+    {% endif %}
+
+    {% for g in siblings %}
+      {% if g.url == page.url %}
+        {% assign prev_index = forloop.index0 | minus: 1 %}
+        {% assign next_index = forloop.index0 | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    <nav class="prev-next" aria-label="Previous and next">
+      {% if prev_index >= 0 %}{% assign prev = siblings[prev_index] %}
+        <a href="{{ prev.url | relative_url }}"><span>Previous</span><strong>← {{ prev.title }}</strong></a>
+      {% else %}<span></span>{% endif %}
+      {% if siblings[next_index] %}{% assign next = siblings[next_index] %}
+        <a class="next" href="{{ next.url | relative_url }}"><span>Next</span><strong>{{ next.title }} →</strong></a>
+      {% endif %}
+    </nav>
+  </article>
+
+  <aside class="sidebar article-aside">
+    <nav class="toc" aria-label="On this page" data-toc hidden>
+      <p class="eyebrow">On this page</p>
+    </nav>
+    {% assign related = siblings | where: "topic", page.topic %}
+    {% if related.size > 1 %}
+    <div class="related">
+      <p class="eyebrow">Related</p>
+      {% for g in related %}{% unless g.url == page.url %}
+        <a class="card" href="{{ g.url | relative_url }}">{{ g.title }}</a>
+      {% endunless %}{% endfor %}
+    </div>
+    {% endif %}
+  </aside>
+</div>

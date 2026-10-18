@@ -1,0 +1,16 @@
+---
+layout: null
+---
+[{% for g in site.guides %}{% assign sec = site.data.sections | where: "slug", g.section | first %}
+  {
+    "title": {{ g.title | jsonify }},
+    "url": {{ g.url | relative_url | jsonify }},
+    "section": {{ g.section | jsonify }},
+    "section_title": {{ sec.title | jsonify }},
+    "topic": {{ g.topic | jsonify }},
+    "level": {{ g.level | jsonify }},
+    "summary": {{ g.summary | jsonify }},
+    "tags": {{ g.tags | join: " " | jsonify }},
+    "text": {{ g.content | strip_html | strip_newlines | truncatewords: 250 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}{% endfor %}
+]

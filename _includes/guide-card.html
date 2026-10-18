@@ -1,0 +1,6 @@
+{% assign g = include.guide %}
+<a class="card guide-card" href="{{ g.url | relative_url }}" data-level="{{ g.level }}" data-topic="{{ g.topic }}">
+  <span class="card-meta"><span class="level level-{{ g.level | slugify }}">{{ g.level }}</span>{{ g.topic }}</span>
+  <strong class="card-title">{{ g.title }}</strong>
+  <span class="card-text">{{ g.summary }}</span>
+</a>

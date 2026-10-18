@@ -1,0 +1,34 @@
+# Site settings
+title: Court Notes
+tagline: Learn every stroke. Play smarter points.
+description: Clear guides to tennis technique, tactics and training for coaches and players who want to improve.
+lang: en
+
+# GitHub Pages project site: https://pyjioh.github.io/TennisLovers/
+url: "https://pyjioh.github.io"
+baseurl: "/TennisLovers"
+
+markdown: kramdown
+kramdown:
+  auto_ids: true
+
+# Every guide lives in _guides/<section>/<name>.md
+# and is published at /<section>/<name>/
+collections:
+  guides:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: guides
+    values:
+      layout: guide
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle

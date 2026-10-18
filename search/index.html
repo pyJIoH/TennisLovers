@@ -1,0 +1,27 @@
+---
+layout: default
+title: Search
+---
+<div class="container narrow search-page">
+  <h1>Search</h1>
+  <form class="search-box" role="search" data-search-form>
+    <label for="q">Search all guides</label>
+    <div class="search-field">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" name="q" placeholder="Search strokes, tactics, drills…" autocomplete="off">
+    </div>
+  </form>
+  <div class="pills" role="group" aria-label="Filter by section" data-search-sections>
+    <button type="button" class="pill" aria-pressed="true" data-section="">All</button>
+    {% for s in site.data.sections %}<button type="button" class="pill" aria-pressed="false" data-section="{{ s.slug }}">{{ s.title }}</button>{% endfor %}
+  </div>
+  <div class="pills" role="group" aria-label="Filter by level" data-search-levels>
+    <button type="button" class="pill pill-small" aria-pressed="true" data-level="">All levels</button>
+    <button type="button" class="pill pill-small" aria-pressed="false" data-level="Beginner">Beginner</button>
+    <button type="button" class="pill pill-small" aria-pressed="false" data-level="Intermediate">Intermediate</button>
+    <button type="button" class="pill pill-small" aria-pressed="false" data-level="Advanced">Advanced</button>
+  </div>
+  <p class="result-count" aria-live="polite" data-search-count></p>
+  <div class="result-list" data-search-results></div>
+  <noscript><p class="empty-note">Search needs JavaScript. You can still browse every section from the menu.</p></noscript>
+</div>

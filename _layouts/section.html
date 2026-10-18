@@ -1,0 +1,47 @@
+---
+layout: default
+---
+{% assign sec = site.data.sections | where: "slug", page.section | first %}
+{% assign guides = site.guides | where: "section", page.section | sort: "order" %}
+<section class="page-head">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a> / {{ sec.title }}</nav>
+    <h1>{{ sec.title }}</h1>
+    <p class="lead">{{ sec.intro }}</p>
+    <div class="pills" role="group" aria-label="Filter by level" data-level-filter>
+      <button type="button" class="pill" aria-pressed="true" data-level="">All levels</button>
+      <button type="button" class="pill" aria-pressed="false" data-level="Beginner">Beginner</button>
+      <button type="button" class="pill" aria-pressed="false" data-level="Intermediate">Intermediate</button>
+      <button type="button" class="pill" aria-pressed="false" data-level="Advanced">Advanced</button>
+    </div>
+  </div>
+</section>
+
+<div class="container with-sidebar">
+  <aside class="sidebar" aria-label="{{ sec.title }} topics">
+    <p class="eyebrow">Topics</p>
+    {% for t in sec.topics %}
+      <a href="#{{ t | slugify }}">{{ t }}</a>
+    {% endfor %}
+  </aside>
+
+  <div class="sidebar-content" data-guide-list>
+    {% if guides.size == 0 %}
+      <p class="empty-note">Guides for this section are coming soon.</p>
+    {% endif %}
+    {% for t in sec.topics %}
+      {% assign topic_guides = guides | where: "topic", t %}
+      <section class="topic-group" id="{{ t | slugify }}">
+        <h2>{{ t }}</h2>
+        {% if topic_guides.size > 0 %}
+          <div class="card-grid">
+            {% for g in topic_guides %}{% include guide-card.html guide=g %}{% endfor %}
+          </div>
+        {% else %}
+          <p class="empty-note">Coming soon.</p>
+        {% endif %}
+      </section>
+    {% endfor %}
+    <p class="empty-note" data-filter-empty hidden>No guides at this level yet.</p>
+  </div>
+</div>
