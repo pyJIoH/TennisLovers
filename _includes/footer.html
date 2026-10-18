@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="container footer-row">
+    <a class="logo logo-small" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav aria-label="Footer">
+      {% for s in site.data.sections %}
+        {% assign s_url = '/' | append: s.slug | append: '/' %}
+        <a href="{{ s_url | relative_url }}">{{ s.title }}</a>
+      {% endfor %}
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </div>
+</footer>

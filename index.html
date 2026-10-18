@@ -1,0 +1,100 @@
+---
+layout: default
+---
+<section class="hero">
+  <svg class="hero-court" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><rect x="160" y="40" width="880" height="440" stroke="#fff" stroke-width="3"/><path d="M600 40v440M160 150h880M160 370h880M380 150v220M820 150v220M380 260h440" stroke="#fff" stroke-width="3"/></svg>
+  <div class="container hero-inner">
+    <p class="eyebrow eyebrow-ball">For coaches and players</p>
+    <h1>{{ site.tagline }}</h1>
+    <p class="hero-lead">Clear guides to technique, tactics and training, written by a coach. Find a stroke, fix a habit, plan a session.</p>
+    <form class="hero-search" action="{{ '/search/' | relative_url }}" method="get" role="search">
+      <label class="visually-hidden" for="hero-q">Search the guides</label>
+      <input id="hero-q" type="search" name="q" placeholder="Try “kick serve” or “two-handed backhand”">
+      <button class="btn btn-ball" type="submit">Search</button>
+    </form>
+    <div class="chips">
+      <span>Popular:</span>
+      <a href="{{ '/search/?q=serve' | relative_url }}">Serve</a>
+      <a href="{{ '/technique/forehand-basics/' | relative_url }}">Forehand basics</a>
+      <a href="{{ '/technique/split-step/' | relative_url }}">Split step</a>
+      <a href="{{ '/tactics/doubles-positioning/' | relative_url }}">Doubles positioning</a>
+    </div>
+  </div>
+</section>
+
+<section class="container block">
+  <div class="block-head">
+    <h2>Start with a stroke</h2>
+    <a class="more" href="{{ '/technique/' | relative_url }}">All technique guides →</a>
+  </div>
+  <div class="card-grid card-grid-4">
+    <a class="card stroke-card" href="{{ '/technique/#serve' | relative_url }}">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#1F5E3B" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 50 30 22"/><ellipse cx="34" cy="14" rx="7" ry="10" transform="rotate(25 34 14)"/><circle cx="44" cy="40" r="5" fill="#DDF247"/></svg>
+      <h3>Serve</h3>
+      <p>Grip, toss, trophy position and the flat, slice and kick serves.</p>
+    </a>
+    <a class="card stroke-card" href="{{ '/technique/#forehand' | relative_url }}">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#1F5E3B" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M8 40c12-4 24-14 30-28"/><ellipse cx="42" cy="12" rx="7" ry="10" transform="rotate(40 42 12)"/><circle cx="14" cy="22" r="5" fill="#DDF247"/></svg>
+      <h3>Forehand</h3>
+      <p>Eastern and semi-western grips, unit turn, contact point and topspin.</p>
+    </a>
+    <a class="card stroke-card" href="{{ '/technique/#backhand' | relative_url }}">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#1F5E3B" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M48 40C36 36 24 26 18 12"/><ellipse cx="14" cy="12" rx="7" ry="10" transform="rotate(-40 14 12)"/><circle cx="42" cy="22" r="5" fill="#DDF247"/></svg>
+      <h3>Backhand</h3>
+      <p>One- and two-handed backhands, the slice, and when to use each.</p>
+    </a>
+    <a class="card stroke-card" href="{{ '/technique/#volley-overhead' | relative_url }}">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#1F5E3B" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 48h44M28 48V30"/><ellipse cx="28" cy="16" rx="8" ry="11"/><circle cx="44" cy="20" r="5" fill="#DDF247"/></svg>
+      <h3>Volley &amp; net</h3>
+      <p>Continental grip, short punch, split step and the overhead smash.</p>
+    </a>
+  </div>
+</section>
+
+<section class="container block">
+  <h2>Browse by topic</h2>
+  <div class="card-grid card-grid-topics">
+    {% for s in site.data.sections %}
+      {% assign s_url = '/' | append: s.slug | append: '/' %}
+      <a class="card topic-card" href="{{ s_url | relative_url }}">
+        <span><strong>{{ s.title }}</strong><span>{{ s.card }}</span></span>
+        <span aria-hidden="true">→</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container block">
+  <h2>Pick your level</h2>
+  <div class="card-grid card-grid-3">
+    <div class="level-card level-card-beginner">
+      <span class="level">Beginner</span>
+      <p>Grips, ready position, rallying from the baseline and getting your first serve in.</p>
+      <a href="{{ '/search/?level=Beginner' | relative_url }}">Beginner guides →</a>
+    </div>
+    <div class="level-card level-card-intermediate">
+      <span class="level">Intermediate</span>
+      <p>Topspin and slice, coming to the net, second-serve confidence and basic patterns.</p>
+      <a href="{{ '/search/?level=Intermediate' | relative_url }}">Intermediate guides →</a>
+    </div>
+    <div class="level-card level-card-advanced">
+      <span class="level">Advanced</span>
+      <p>Kick serves, building points, match strategy and reading your opponent.</p>
+      <a href="{{ '/search/?level=Advanced' | relative_url }}">Advanced guides →</a>
+    </div>
+  </div>
+</section>
+
+<section class="container block">
+  <div class="coach-band">
+    <div>
+      <h2>For coaches</h2>
+      <p>Lesson plans, teaching progressions and group drills you can take straight to court.</p>
+    </div>
+    <a class="btn btn-ball" href="{{ '/coaches/' | relative_url }}">Open the coach section</a>
+  </div>
+</section>
+
+<section class="container block block-last">
+  <p class="later-note"><strong>Coming later</strong> Video lessons and recommended books, linked from each guide.</p>
+</section>

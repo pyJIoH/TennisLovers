@@ -1,0 +1,32 @@
+# The top menu. Order here is the order in the header.
+# "topics" are the sub-menu on each section page; a guide picks one with `topic:`.
+
+- slug: technique
+  title: Technique
+  intro: Step-by-step guides for every stroke. Each one covers the grip, the movement, common mistakes and drills to fix them.
+  card: Every stroke, step by step
+  topics: [Serve, Forehand, Backhand, Volley & overhead, Return of serve, Footwork, Slice & drop shot]
+
+- slug: tactics
+  title: Tactics
+  intro: How to win points, not just hit balls. Patterns for singles and doubles, shot selection and match plans.
+  card: Singles patterns, doubles, shot choice
+  topics: [Singles patterns, Serve & first ball, Doubles, Playing styles, Shot selection]
+
+- slug: training
+  title: Training & drills
+  intro: Drills sorted by level, warm-ups and practice plans you can take straight to court.
+  card: Drills by level, warm-ups, footwork
+  topics: [Drills, Warm-up, Movement & fitness, Practice plans]
+
+- slug: mental
+  title: Mental game
+  intro: Focus, nerves and routines, plus practical advice on equipment, health and the rules.
+  card: Focus, nerves, routines between points
+  topics: [Mindset, Equipment, Injury prevention, Rules & scoring]
+
+- slug: coaches
+  title: For coaches
+  intro: Lesson plans, teaching progressions and group drills for coaches.
+  card: Lesson plans and teaching progressions
+  topics: [Lesson plans, Teaching progressions, Group drills]

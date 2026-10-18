@@ -1,0 +1,14 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+---
+<div class="container narrow page-pad">
+  <h1>Out of bounds</h1>
+  <p class="lead">That page doesn't exist. Try searching, or start from the <a href="{{ '/' | relative_url }}">home page</a>.</p>
+  <form class="hero-search" action="{{ '/search/' | relative_url }}" method="get" role="search">
+    <label class="visually-hidden" for="nf-q">Search the guides</label>
+    <input id="nf-q" type="search" name="q" placeholder="Search the guides">
+    <button class="btn btn-dark" type="submit">Search</button>
+  </form>
+</div>
